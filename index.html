@@ -3,91 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miraku Animation | Studio</title>
+    <title>Miraku Animation Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
         
         body {
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='white'><path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/></svg>") 16 16, auto;
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #ffffff 100%);
+            background: linear-gradient(to bottom, #000000 0%, #ffffff 100%);
             min-height: 100vh;
+            color: #333;
         }
 
-        .sidebar-item {
+        .nav-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            transition: all 0.3s ease;
         }
 
-        .sidebar-item::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 1px;
-            background: currentColor;
-            transition: width 0.3s ease;
+        .nav-link:hover {
+            color: #666;
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px rgba(0,0,0,0.2);
         }
 
-        .sidebar-item:hover::after {
-            width: 100%;
+        .btn-hover {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-hover:hover {
+            transform: scale(1.05);
+            background-color: #000;
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-bg {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); opacity: 0.3; }
+            50% { transform: translateY(-20px); opacity: 0.8; }
+        }
+
+        .celestial-animate {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="text-white">
+<body class="text-gray-900">
 
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <aside class="w-full md:w-72 bg-black/80 backdrop-blur-md p-10 flex flex-col justify-between border-r border-white/10">
-            <div>
-                <h1 class="text-2xl font-bold tracking-tighter mb-12">MIRAKU<br><span class="text-xs font-light tracking-[0.5em] text-gray-500 uppercase">Animation</span></h1>
-                <nav class="space-y-8 uppercase tracking-widest text-xs font-medium text-gray-400">
-                    <a href="#" class="sidebar-item block hover:text-white transition">Portfolio</a>
-                    <a href="#" class="sidebar-item block hover:text-white transition">Process</a>
-                    <a href="#" class="sidebar-item block hover:text-white transition">Studio</a>
-                    <a href="#" class="sidebar-item block hover:text-white transition">Contact</a>
-                </nav>
+    <nav class="flex justify-between items-center p-8 md:px-20 text-gray-200">
+        <div class="text-xl font-bold tracking-tighter">
+            MIRAKU<span class="block text-[8px] tracking-[0.5em] font-light uppercase opacity-60">Animation</span>
+        </div>
+        <div class="flex space-x-8 uppercase tracking-widest text-xs font-medium">
+            <a href="#" class="nav-link hover:text-black">Projects</a>
+            <a href="#" class="nav-link hover:text-black">News</a>
+            <a href="javascript:void(0)" onclick="toggleSocialModal()" class="nav-link hover:text-black">Social Media</a>
+            <a href="javascript:void(0)" onclick="toggleContactModal()" class="nav-link hover:text-black">Contact</a>
+        </div>
+    </nav>
+
+    <main class="flex flex-col items-center justify-center min-h-[60vh] p-10 fade-in">
+        <h1 class="text-4xl md:text-6xl font-bold text-center mb-4 tracking-tight">
+            Animation Studio
+        </h1>
+        <p class="text-gray-700 max-w-lg text-center text-xs font-light leading-relaxed uppercase tracking-[0.2em]">
+            Specialized in 3D to 2D Anime
+        </p>
+    </main>
+
+    <div id="socialModal" class="fixed inset-0 flex items-center justify-center hidden modal-bg z-50">
+        <div id="celestialEffect" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+        
+        <div class="bg-white p-12 rounded-lg shadow-2xl w-full max-w-sm text-center relative z-10">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-widest">Follow Us</h2>
+            <div class="flex justify-center space-x-8">
+                <!-- Discord Icon -->
+                <a href="https://dsc.gg/mirakurecruitment" target="_blank" class="btn-hover p-2 rounded-full transition text-black">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.1 18.099a.082.082 0 0 0 .031.058c1.282.935 2.532 1.503 3.738 1.895a.077.077 0 0 0 .083-.038c.453-.774.86-1.59 1.213-2.45a.077.077 0 0 0-.041-.105c-.652-.247-1.274-.56-1.872-.923a.077.077 0 0 1-.007-.127c.125-.094.252-.192.373-.295a.077.077 0 0 1 .077-.008c3.928 1.793 8.18 1.793 12.062 0a.077.077 0 0 1 .078.007c.12.103.248.203.373.296a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.923a.077.077 0 0 0-.041.105c.36.86.768 1.676 1.213 2.45a.077.077 0 0 0 .083.038c1.206-.392 2.456-.96 3.738-1.895a.077.077 0 0 0 .031-.058c.484-5.074-.82-9.61-3.66-14.223a.087.087 0 0 0-.033-.027ZM8.02 15.332c-1.18 0-2.156-1.085-2.156-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.156 2.419 0 1.333-.955 2.419-2.156 2.419Zm7.975 0c-1.18 0-2.156-1.085-2.156-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.156 2.419 0 1.333-.946 2.419-2.156 2.419Z"/></svg>
+                </a>
+                <!-- YouTube Icon -->
+                <a href="#" class="btn-hover p-2 rounded-full transition text-black">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <!-- Patreon Icon -->
+                <a href="#" class="btn-hover p-2 rounded-full transition text-black">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M14.93 1.55c-4.47 0-8.1 3.63-8.1 8.1 0 4.47 3.63 8.1 8.1 8.1 4.47 0 8.1-3.63 8.1-8.1 0-4.47-3.63-8.1-8.1-8.1zM3.46 22.45h2.64V7.55H3.46v14.9z"/></svg>
+                </a>
             </div>
-            <div class="text-[10px] uppercase tracking-widest text-gray-600">
-                &copy; 2026 Miraku.
-            </div>
-        </aside>
-
-        <main class="flex-grow p-10 md:p-20">
-            <header class="mb-24">
-                <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">Crafting visual<br>narratives.</h2>
-                <p class="text-gray-200 max-w-lg text-lg font-light leading-relaxed">
-                    We specialize in high-end animation and motion design, turning complex concepts into seamless, emotive visual experiences.
-                </p>
-            </header>
-
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">01 / Motion Graphics</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">Kinetic Identities</h3>
-                    <p class="text-sm text-gray-300">Fluid motion design that breathes life into static brand identities.</p>
-                </div>
-                
-                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">02 / Narrative Storytelling</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">Short Films</h3>
-                    <p class="text-sm text-gray-300">Hand-crafted sequences that captivate audiences through depth and nuance.</p>
-                </div>
-
-                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">03 / Experiential</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">Immersive Spaces</h3>
-                    <p class="text-sm text-gray-300">Transforming physical and digital spaces through architectural animation.</p>
-                </div>
-
-                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">04 / Experimental</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">New Frontiers</h3>
-                    <p class="text-sm text-gray-300">Pushing the boundaries of traditional animation into the digital unknown.</p>
-                </div>
-            </section>
-        </main>
+            <button onclick="toggleSocialModal()" class="mt-10 btn-hover px-4 py-2 border border-gray-200 rounded text-[10px] uppercase tracking-widest text-gray-500 hover:text-black transition">Close</button>
+        </div>
     </div>
 
+    <div id="contactModal" class="fixed inset-0 flex items-center justify-center hidden modal-bg z-50">
+        <div class="bg-white p-12 rounded-lg shadow-2xl w-full max-w-sm text-center relative z-10">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-widest">Email Us</h2>
+            <p class="text-sm font-light text-gray-600 mb-8 tracking-widest underline underline-offset-4">mirakuanimation@gmail.com</p>
+            <button onclick="toggleContactModal()" class="btn-hover px-4 py-2 border border-gray-200 rounded text-[10px] uppercase tracking-widest text-gray-500 hover:text-black transition">Close</button>
+        </div>
+    </div>
+
+    <footer class="p-10 text-center text-gray-500 text-xs uppercase tracking-widest font-semibold mt-auto">
+        &copy; 2026 Miraku Animation. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleSocialModal() {
+            const modal = document.getElementById('socialModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) spawnCelestialElements();
+        }
+
+        function toggleContactModal() {
+            document.getElementById('contactModal').classList.toggle('hidden');
+        }
+
+        function spawnCelestialElements() {
+            const container = document.getElementById('celestialEffect');
+            container.innerHTML = ''; 
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.className = 'absolute celestial-animate text-white opacity-30';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                el.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                el.innerHTML = Math.random() > 0.5 ? '✦' : '☾';
+                container.appendChild(el);
+            }
+        }
+    </script>
 </body>
 </html>
