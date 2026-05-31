@@ -3,71 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miraku Animation Studio</title>
-    <link rel="icon" href="image_a3e5a6.png" type="image/png">
+    <title>Miraku Animation | Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
         
         body {
-            background-color: #050505;
-            color: #d1d5db;
             font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #ffffff 100%);
+            min-height: 100vh;
         }
-        .brand-font { font-family: 'Cinzel', serif; }
-        .bg-gradient-custom {
-            background: radial-gradient(circle at center, #171717 0%, #050505 100%);
+
+        .sidebar-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-item::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 1px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-item:hover::after {
+            width: 100%;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans">
+<body class="text-white">
 
-    <header class="p-6 md:p-10 flex justify-between items-center max-w-7xl mx-auto w-full">
-        <div class="flex items-center gap-3">
-            <img src="image_a3e5a6.png" alt="Logo" class="w-8 h-8 rounded-full">
-            <h1 class="brand-font text-2xl tracking-widest text-white">MIRAKU</h1>
-        </div>
-        <nav class="hidden md:flex space-x-10 text-sm uppercase tracking-widest text-gray-500">
-            <a href="#" class="hover:text-white transition">Portfolio</a>
-            <a href="#" class="hover:text-white transition">Services</a>
-            <a href="#" class="hover:text-white transition">Studio</a>
-            <a href="#" class="hover:text-white transition">Contact</a>
-        </nav>
-    </header>
-
-    <main class="flex-grow flex flex-col items-center justify-center text-center px-6 py-20 bg-gradient-custom">
-        <div class="mb-10">
-            <img src="image_a3e5a6.png" alt="Logo" class="w-24 h-24 mx-auto opacity-80 mb-6">
-            <h2 class="brand-font text-5xl md:text-8xl text-white mb-6">Animation Redefined.</h2>
-            <p class="max-w-2xl text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-                We craft visual narratives that blur the line between reality and imagination. 
-                Based in the heart of creativity.
-            </p>
-        </div>
-        <div class="flex gap-4">
-            <button class="bg-white text-black px-8 py-4 font-semibold tracking-wide hover:bg-gray-200 transition">View Works</button>
-            <button class="border border-gray-700 text-white px-8 py-4 font-semibold tracking-wide hover:bg-gray-800 transition">Contact Us</button>
-        </div>
-    </main>
-
-    <section class="max-w-7xl mx-auto w-full px-6 py-20">
-        <h3 class="text-xs uppercase tracking-[0.3em] text-gray-600 mb-12">Latest Projects</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="aspect-video bg-gray-900 border border-gray-800 flex items-center justify-center transition hover:border-gray-600">
-                <span class="text-gray-700 uppercase tracking-widest text-sm">Project A</span>
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <aside class="w-full md:w-72 bg-black/80 backdrop-blur-md p-10 flex flex-col justify-between border-r border-white/10">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tighter mb-12">MIRAKU<br><span class="text-xs font-light tracking-[0.5em] text-gray-500 uppercase">Animation</span></h1>
+                <nav class="space-y-8 uppercase tracking-widest text-xs font-medium text-gray-400">
+                    <a href="#" class="sidebar-item block hover:text-white transition">Portfolio</a>
+                    <a href="#" class="sidebar-item block hover:text-white transition">Process</a>
+                    <a href="#" class="sidebar-item block hover:text-white transition">Studio</a>
+                    <a href="#" class="sidebar-item block hover:text-white transition">Contact</a>
+                </nav>
             </div>
-            <div class="aspect-video bg-gray-900 border border-gray-800 flex items-center justify-center transition hover:border-gray-600">
-                <span class="text-gray-700 uppercase tracking-widest text-sm">Project B</span>
+            <div class="text-[10px] uppercase tracking-widest text-gray-600">
+                &copy; 2026 Miraku.
             </div>
-            <div class="aspect-video bg-gray-900 border border-gray-800 flex items-center justify-center transition hover:border-gray-600">
-                <span class="text-gray-700 uppercase tracking-widest text-sm">Project C</span>
-            </div>
-        </div>
-    </section>
+        </aside>
 
-    <footer class="p-10 text-center border-t border-gray-900 text-gray-700 text-xs uppercase tracking-widest">
-        &copy; 2026 Miraku Animation Studio. All rights reserved.
-    </footer>
+        <main class="flex-grow p-10 md:p-20">
+            <header class="mb-24">
+                <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">Crafting visual<br>narratives.</h2>
+                <p class="text-gray-200 max-w-lg text-lg font-light leading-relaxed">
+                    We specialize in high-end animation and motion design, turning complex concepts into seamless, emotive visual experiences.
+                </p>
+            </header>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">01 / Motion Graphics</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2">Kinetic Identities</h3>
+                    <p class="text-sm text-gray-300">Fluid motion design that breathes life into static brand identities.</p>
+                </div>
+                
+                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">02 / Narrative Storytelling</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2">Short Films</h3>
+                    <p class="text-sm text-gray-300">Hand-crafted sequences that captivate audiences through depth and nuance.</p>
+                </div>
+
+                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">03 / Experiential</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2">Immersive Spaces</h3>
+                    <p class="text-sm text-gray-300">Transforming physical and digital spaces through architectural animation.</p>
+                </div>
+
+                <div class="group border border-white/10 p-8 hover:bg-white/5 transition-all duration-500">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">04 / Experimental</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2">New Frontiers</h3>
+                    <p class="text-sm text-gray-300">Pushing the boundaries of traditional animation into the digital unknown.</p>
+                </div>
+            </section>
+        </main>
+    </div>
 
 </body>
 </html>
