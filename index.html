@@ -1,67 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miraku Animation | Studio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
-        
-        body {
-            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
-            color: #e5e5e5;
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-        }
-        .brand-font { font-family: 'Cinzel', serif; }
-        .gradient-text {
-            background: linear-gradient(to bottom, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miraku Animation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    color:white;
+    overflow-x:hidden;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 10%;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:1.8rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.logo span{
+    color:#9d6bff;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#9d6bff;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 10%;
+}
+
+.hero-content h1{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero-content h1 span{
+    color:#9d6bff;
+}
+
+.hero-content p{
+    color:#bdbdbd;
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:15px 35px;
+    background:#9d6bff;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(157,107,255,.4);
+}
+
+.section{
+    padding:100px 10%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.title h2{
+    font-size:2.5rem;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#161616;
+    padding:30px;
+    border-radius:20px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border:1px solid #9d6bff;
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#9d6bff;
+}
+
+.card p{
+    color:#c9c9c9;
+}
+
+.footer{
+    text-align:center;
+    padding:40px;
+    color:#888;
+    border-top:1px solid #222;
+}
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#7b3dff;
+    filter:blur(250px);
+    opacity:.15;
+    z-index:-1;
+}
+
+.glow1{
+    top:-200px;
+    left:-150px;
+}
+
+.glow2{
+    bottom:-200px;
+    right:-150px;
+}
+</style>
 </head>
-<body class="min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="p-8 flex justify-between items-center max-w-6xl mx-auto w-full">
-        <div class="flex flex-col items-center">
-            <svg viewBox="0 0 200 120" class="w-32 h-20 mb-2 fill-current text-white">
-                <!-- Arc -->
-                <path d="M50 80 Q 100 60 150 80" stroke="white" fill="none" stroke-width="1" opacity="0.6" />
-                <!-- Crescent Moon -->
-                <path d="M100 20 A 15 15 0 1 0 100 50 A 10 10 0 1 1 100 20" fill="white" />
-                <!-- Stars -->
-                <path d="M70 35 L72 40 L70 45 L68 40 Z" fill="white" />
-                <path d="M130 35 L132 40 L130 45 L128 40 Z" fill="white" />
-                <path d="M85 25 L86 28 L85 31 L84 28 Z" fill="white" opacity="0.7" />
-            </svg>
-            <div class="brand-font text-2xl tracking-[0.2em]">MIRAKU</div>
-            <div class="text-[10px] tracking-[0.5em] text-gray-400 uppercase">Animation</div>
-        </div>
-        <nav class="space-x-8 text-sm uppercase tracking-widest text-gray-400 hidden md:block">
-            <a href="#" class="hover:text-white transition">Work</a>
-            <a href="#" class="hover:text-white transition">Studio</a>
-            <a href="#" class="hover:text-white transition">Contact</a>
-        </nav>
-    </header>
+<body>
 
-    <!-- Hero -->
-    <main class="flex-grow flex flex-col items-center justify-center text-center px-4">
-        <h1 class="brand-font text-5xl md:text-7xl mb-6 gradient-text">Where Dreams Animate.</h1>
-        <p class="max-w-xl text-gray-400 font-light text-lg leading-relaxed mb-10">
-            Crafting immersive visual stories through meticulous hand-drawn detail and modern animation techniques.
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<nav>
+    <div class="logo">Miraku<span>Animation</span></div>
+
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Creating Worlds Through <span>Animation</span></h1>
+
+        <p>
+            Miraku Animation is an independent animation studio dedicated
+            to bringing unforgettable stories, breathtaking visuals, and
+            original worlds to life. We create anime-inspired productions,
+            cinematic experiences, and creative projects driven by passion.
         </p>
-        <button class="border border-gray-700 px-8 py-3 hover:bg-white hover:text-black transition duration-300 uppercase tracking-widest text-sm">
-            Explore Portfolio
-        </button>
-    </main>
 
-    <!-- Footer -->
-    <footer class="p-8 text-center text-gray-600 text-xs uppercase tracking-widest">
-        &copy; 2026 Miraku Animation Studio. All rights reserved.
-    </footer>
+        <a href="#" class="btn">Explore Our Work</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="title">
+        <h2>What We Do</h2>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Anime Production</h3>
+            <p>
+                Original anime-inspired series and animated shorts crafted
+                with passion and creativity.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Story Development</h3>
+            <p>
+                From concept to screenplay, we build compelling stories
+                and immersive universes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Creative Team</h3>
+            <p>
+                Artists, animators, writers, and voice actors working
+                together to create amazing experiences.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    © 2026 Miraku Animation. All Rights Reserved.
+</footer>
 
 </body>
 </html>
