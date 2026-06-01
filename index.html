@@ -39,46 +39,21 @@
             justify-content: center;
         }
 
-        .bg-animation {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
+        /* Aesthetic Animated Modal Background */
+        .modal-bg-anim {
+            background: linear-gradient(45deg, #1f1f1f, #000000, #1f1f1f);
+            background-size: 200% 200%;
+            animation: gradientMove 6s ease infinite;
         }
 
-        .bg-particle {
-            position: absolute;
-            font-size: 1.5rem;
-            background: linear-gradient(to bottom, #ffffff, #000000);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: float linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(110vh) rotate(0deg); }
-            100% { transform: translateY(-10vh) rotate(360deg); }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .hero-text { color: #ffffff; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .subtitle { color: #9ca3af; }
-
-        .particle {
-            position: fixed;
-            bottom: -50px;
-            pointer-events: none;
-            color: #ffffff;
-            font-size: 0.8rem;
-            filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
-            z-index: 60;
-            animation: rise 4s ease-out forwards;
-        }
-        @keyframes rise {
-            0% { transform: translateY(0) scale(0); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(-110vh) translateX(var(--dx)); opacity: 0; }
-        }
 
         .nav-link { position: relative; padding-bottom: 4px; }
         .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background-color: white; transition: width 0.3s ease; }
@@ -116,18 +91,20 @@
     </div>
 
     <div id="socialModal" class="hidden modal-overlay">
-        <div class="bg-animation" id="bgAnim"></div>
-        <div class="bg-white p-8 rounded-3xl w-72 text-center shadow-2xl relative z-10">
-            <h2 class="text-sm font-bold mb-6 uppercase tracking-widest text-gray-900">Social Media</h2>
+        <div class="modal-bg-anim p-8 rounded-3xl w-80 text-center shadow-2xl relative z-10 border border-gray-800">
+            <h2 class="text-xs font-bold mb-8 uppercase tracking-[0.2em] text-white">Social Media</h2>
             <div class="flex justify-center gap-6">
-                <a href="https://www.youtube.com/@mirakuanimation" target="_blank" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:scale-110 transition">
+                <a href="https://www.youtube.com/@mirakuanimation" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300">
                     <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
-                <a href="https://www.patreon.com/cw/mirakuanimation" target="_blank" class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center hover:scale-110 transition">
-                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M14.93 1.55c-4.47 0-8.1 3.63-8.1 8.1 0 4.47 3.63 8.1 8.1 8.1 4.47 0 8.1-3.63 8.1-8.1 0-4.47-3.63-8.1-8.1-8.1zM3.46 22.45h2.64V7.55H3.46v14.9z"/></svg>
+                <a href="https://www.patreon.com/mirakuanimation" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-all duration-300">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M15.386.516c-4.767 0-8.641 3.874-8.641 8.641 0 4.75 3.874 8.625 8.641 8.625 4.75 0 8.625-3.875 8.625-8.625 0-4.767-3.875-8.641-8.625-8.641zM3.692 23.484h3.116V8.046H3.692v15.438z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/mirakuanimation/" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.13.052 1.742.235 2.15.394.542.21.928.46 1.334.866.406.406.656.792.866 1.334.159.408.342 1.02.394 2.15.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.052 1.13-.235 1.742-.394 2.15-.21.542-.46.928-.866 1.334-.406.406-.792.656-1.334.866-.408.159-1.02.342-2.15.394-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.13-.052-1.742-.235-2.15-.394-.542-.21-.928-.46-1.334-.866-.406-.406-.656-.792-.866-1.334-.159-.408-.342-1.02-.394-2.15-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.052-1.13.235-1.742.394-2.15.21-.542.46-.928.866-1.334.406-.406.792-.656 1.334-.866.408-.159 1.02-.342 2.15-.394 1.266-.058 1.646-.07 4.85-.07zm0 1.683c-3.12 0-3.486.012-4.72.068-1.03.048-1.58.225-1.95.367-.49.19-.84.42-1.21.79-.37.37-.6.72-.79 1.21-.14.37-.32.92-.37 1.95-.056 1.234-.068 1.6-.068 4.72s.012 3.486.068 4.72c.048 1.03.225 1.58.367 1.95.19.49.42.84.79 1.21.37.37.72.6 1.21.79.37.14.92.32 1.95.37 1.234.056 1.6.068 4.72.068s3.486-.012 4.72-.068c1.03-.048 1.58-.225 1.95-.367.49-.19.84-.42 1.21-.79.37-.37.6-.72.79-1.21.14-.37.32-.92.37-1.95.056-1.234.068-1.6.068-4.72s-.012-3.486-.068-4.72c-.048-1.03-.225-1.58-.367-1.95-.19-.49-.42-.84-.79-1.21-.37-.37-.72-.6-1.21-.79-.37-.14-.92-.32-1.95-.37-1.234-.056-1.6-.068-4.72-.068zm0 3.397c2.46 0 4.46 2 4.46 4.46s-2 4.46-4.46 4.46-4.46-2-4.46-4.46 2-4.46 4.46-4.46zm0 1.683c-1.53 0-2.777 1.247-2.777 2.777s1.247 2.777 2.777 2.777 2.777-1.247 2.777-2.777-1.247-2.777-2.777-2.777zm5.558-4.992c.576 0 1.043.467 1.043 1.043s-.467 1.043-1.043 1.043-1.043-.467-1.043-1.043.467-1.043 1.043-1.043.467-1.043 1.043-1.043z"/></svg>
                 </a>
             </div>
-            <button onclick="toggleSocialModal()" class="mt-8 text-[10px] uppercase text-gray-500 hover:text-gray-800 transition">Close</button>
+            <button onclick="toggleSocialModal()" class="mt-10 text-[9px] uppercase tracking-[0.2em] text-gray-400 hover:text-white transition">Close</button>
         </div>
     </div>
 
@@ -138,40 +115,12 @@
             cursor.style.top = (e.clientY - 12) + 'px';
         });
 
-        function createBgParticles() {
-            const container = document.getElementById('bgAnim');
-            container.innerHTML = '';
-            for(let i=0; i<20; i++) {
-                const p = document.createElement('div');
-                p.className = 'bg-particle';
-                p.innerText = Math.random() > 0.5 ? '⭐' : '🌙';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.top = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                p.style.animationDelay = Math.random() * 2 + 's';
-                container.appendChild(p);
-            }
-        }
-
         function openSocialModal() {
-            createBgParticles();
             document.getElementById('socialModal').classList.remove('hidden');
-            const items = [{char: '⭐', count: 55}, {char: '🌙', count: 44}];
-            items.forEach(item => {
-                for(let i=0; i<item.count; i++) {
-                    const p = document.createElement('div');
-                    p.className = 'particle';
-                    p.innerText = item.char;
-                    p.style.left = (Math.random() * 100) + 'vw';
-                    p.style.setProperty('--dx', (Math.random() * 400 - 200) + 'px');
-                    document.body.appendChild(p);
-                    setTimeout(() => p.remove(), 4000);
-                }
-            });
         }
         function toggleSocialModal() { document.getElementById('socialModal').classList.add('hidden'); }
         function toggleRecruitModal() {}
         function toggleContactModal() {}
     </script>
 </body>
-</html>
+</html>```
