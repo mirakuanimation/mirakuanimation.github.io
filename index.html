@@ -6,7 +6,7 @@
     <title>Miraku Animation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@1,900&display=swap');
         
         body {
             background: linear-gradient(180deg, #0a0a0a 0%, #171717 50%, #ffffff 100%);
@@ -50,7 +50,6 @@
         .bg-particle {
             position: absolute;
             font-size: 1.5rem;
-            /* White to black gradient effect using background-clip */
             background: linear-gradient(to bottom, #ffffff, #000000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -80,30 +79,41 @@
             20% { opacity: 1; }
             100% { transform: translateY(-110vh) translateX(var(--dx)); opacity: 0; }
         }
+
+        .nav-link { position: relative; padding-bottom: 4px; }
+        .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background-color: white; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        .scroll-indicator { animation: pulse 2s infinite; }
     </style>
 </head>
-<body class="text-gray-900">
+<body class="text-gray-900 flex flex-col justify-between h-screen overflow-hidden">
 
     <div id="custom-cursor"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
 
-    <nav class="flex justify-between items-center px-12 py-10 w-full text-white">
-        <div class="flex flex-col items-start">
-            <span class="text-3xl tracking-tighter">MIRAKU</span>
-            <span class="text-xs uppercase tracking-[0.2em] text-gray-400">Animation</span>
+    <nav class="flex justify-between items-center px-12 py-10 w-full text-white z-20">
+        <div class="flex flex-col leading-tight">
+            <span class="text-2xl font-black tracking-tighter italic">MIRAKU</span>
+            <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400">Animation</span>
         </div>
         <div class="flex gap-10 text-xs uppercase tracking-widest font-light text-gray-300">
-            <a href="#" class="hover:text-white transition">Projects</a>
-            <a href="#" class="hover:text-white transition">News</a>
-            <a href="javascript:void(0)" onclick="openSocialModal()" class="hover:text-white transition">Social Media</a>
-            <a href="javascript:void(0)" onclick="toggleRecruitModal()" class="hover:text-white transition">Recruit</a>
-            <a href="javascript:void(0)" onclick="toggleContactModal()" class="hover:text-white transition">Contact</a>
+            <a href="#" class="nav-link hover:text-white transition">Projects</a>
+            <a href="#" class="nav-link hover:text-white transition">News</a>
+            <a href="javascript:void(0)" onclick="openSocialModal()" class="nav-link hover:text-white transition">Social Media</a>
+            <a href="javascript:void(0)" onclick="toggleRecruitModal()" class="nav-link hover:text-white transition">Recruit</a>
+            <a href="javascript:void(0)" onclick="toggleContactModal()" class="nav-link hover:text-white transition">Contact</a>
         </div>
     </nav>
 
-    <main class="flex flex-col items-center justify-center pt-20 pb-40">
+    <main class="flex-grow flex flex-col items-center justify-center">
         <h1 class="text-6xl font-bold hero-text mb-2">Animation Studio</h1>
         <p class="text-sm uppercase tracking-[0.3em] subtitle">Specialized in 3D to 2D Anime</p>
     </main>
+
+    <div class="z-20 text-white text-[10px] uppercase tracking-widest text-center pb-8 scroll-indicator">
+        Scroll
+    </div>
 
     <div id="socialModal" class="hidden modal-overlay">
         <div class="bg-animation" id="bgAnim"></div>
