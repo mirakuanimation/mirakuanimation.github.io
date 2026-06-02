@@ -1,165 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Miraku Animation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@1,900&display=swap');
+        
+        body {
+            background: linear-gradient(180deg, #0a0a0a 0%, #171717 50%, #ffffff 100%);
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        #custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+            mix-blend-mode: difference;
+            transition: transform 0.05s ease-out;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(13px);
+            z-index: 50;
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Aesthetic Animated Modal Background */
+        .modal-bg-anim {
+            background: linear-gradient(45deg, #1f1f1f, #000000, #1f1f1f);
+            background-size: 200% 200%;
+            animation: gradientMove 6s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-text { color: #ffffff; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .subtitle { color: #9ca3af; }
+
+        .nav-link { position: relative; padding-bottom: 4px; }
+        .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background-color: white; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        .scroll-indicator { animation: pulse 2s infinite; }
+    </style>
 </head>
+    <body>
+        <div class="stars"></div>
+<div class="moon"></div>
+<div class="shooting-star"></div>
+        
+<body class="text-gray-900 flex flex-col justify-between h-screen overflow-hidden">
 
-<body>
+    <div id="custom-cursor"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
 
-    <div class="star"></div>
-
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#join">Join Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <nav class="flex justify-between items-center px-12 py-10 w-full text-white z-20">
+        <div class="flex flex-col leading-tight">
+            <span class="text-2xl font-black tracking-tighter italic">MIRAKU</span>
+            <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400">Animation</span>
+        </div>
+        <div class="flex gap-10 text-xs uppercase tracking-widest font-light text-gray-300">
+            <a href="#" class="nav-link hover:text-white transition">Projects</a>
+            <a href="#" class="nav-link hover:text-white transition">News</a>
+            <a href="javascript:void(0)" onclick="openSocialModal()" class="nav-link hover:text-white transition">Social Media</a>
+            <a href="javascript:void(0)" onclick="toggleRecruitModal()" class="nav-link hover:text-white transition">Recruit</a>
+            <a href="javascript:void(0)" onclick="toggleContactModal()" class="nav-link hover:text-white transition">Contact</a>
+        </div>
     </nav>
 
-    <section id="home" class="hero">
+    <main class="flex-grow flex flex-col items-center justify-center hero-container">
 
-        <img src="logo.png" alt="Miraku Logo" class="logo">
+    <h1 class="hero-title">
+        MIRAKU
+    </h1>
 
-        <h1>Miraku Animation</h1>
+    <p class="text-sm uppercase tracking-[0.5em] text-gray-300 mt-2">
+        Animation
+    </p>
 
-        <p>
-            Creating Worlds • Inspiring Generations
-        </p>
+    <button class="join-btn">
+        JOIN US
+    </button>
 
-        <a href="#about" class="btn">
-            Explore
-        </a>
+</main>
 
-    </section>
+    <div class="z-20 text-white text-[10px] uppercase tracking-widest text-center pb-8 scroll-indicator">
+        Scroll
+    </div>
 
-    <section id="about" class="reveal">
-
-        <h2>About Us</h2>
-
-        <p>
-            Miraku Animation is an independent animation studio dedicated to creating
-            unforgettable stories, memorable characters, and breathtaking worlds.
-            We believe imagination has no limits.
-        </p>
-
-    </section>
-
-    <section id="projects" class="reveal">
-
-        <h2>Our Projects</h2>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>Project One</h3>
-                <p>
-                    Original anime series currently in development.
-                </p>
+    <div id="socialModal" class="hidden modal-overlay">
+        <div class="modal-bg-anim p-8 rounded-3xl w-80 text-center shadow-2xl relative z-10 border border-gray-800">
+            <h2 class="text-xs font-bold mb-8 uppercase tracking-[0.2em] text-white">Social Media</h2>
+            <div class="flex justify-center gap-6">
+                <a href="https://www.youtube.com/@mirakuanimation" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="https://www.patreon.com/mirakuanimation" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-all duration-300">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M15.386.516c-4.767 0-8.641 3.874-8.641 8.641 0 4.75 3.874 8.625 8.641 8.625 4.75 0 8.625-3.875 8.625-8.625 0-4.767-3.875-8.641-8.625-8.641zM3.692 23.484h3.116V8.046H3.692v15.438z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/mirakuanimation/" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.13.052 1.742.235 2.15.394.542.21.928.46 1.334.866.406.406.656.792.866 1.334.159.408.342 1.02.394 2.15.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.052 1.13-.235 1.742-.394 2.15-.21.542-.46.928-.866 1.334-.406.406-.792.656-1.334.866-.408.159-1.02.342-2.15.394-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.13-.052-1.742-.235-2.15-.394-.542-.21-.928-.46-1.334-.866-.406-.406-.656-.792-.866-1.334-.159-.408-.342-1.02-.394-2.15-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.052-1.13.235-1.742.394-2.15.21-.542.46-.928.866-1.334.406-.406.792-.656 1.334-.866.408-.159 1.02-.342 2.15-.394 1.266-.058 1.646-.07 4.85-.07zm0 1.683c-3.12 0-3.486.012-4.72.068-1.03.048-1.58.225-1.95.367-.49.19-.84.42-1.21.79-.37.37-.6.72-.79 1.21-.14.37-.32.92-.37 1.95-.056 1.234-.068 1.6-.068 4.72s.012 3.486.068 4.72c.048 1.03.225 1.58.367 1.95.19.49.42.84.79 1.21.37.37.72.6 1.21.79.37.14.92.32 1.95.37 1.234.056 1.6.068 4.72.068s3.486-.012 4.72-.068c1.03-.048 1.58-.225 1.95-.367.49-.19.84-.42 1.21-.79.37-.37.6-.72.79-1.21.14-.37.32-.92.37-1.95.056-1.234.068-1.6.068-4.72s-.012-3.486-.068-4.72c-.048-1.03-.225-1.58-.367-1.95-.19-.49-.42-.84-.79-1.21-.37-.37-.72-.6-1.21-.79-.37-.14-.92-.32-1.95-.37-1.234-.056-1.6-.068-4.72-.068zm0 3.397c2.46 0 4.46 2 4.46 4.46s-2 4.46-4.46 4.46-4.46-2-4.46-4.46 2-4.46 4.46-4.46zm0 1.683c-1.53 0-2.777 1.247-2.777 2.777s1.247 2.777 2.777 2.777 2.777-1.247 2.777-2.777-1.247-2.777-2.777-2.777zm5.558-4.992c.576 0 1.043.467 1.043 1.043s-.467 1.043-1.043 1.043-1.043-.467-1.043-1.043.467-1.043 1.043-1.043.467-1.043 1.043-1.043z"/></svg>
+                </a>
             </div>
-
-            <div class="card">
-                <h3>Project Two</h3>
-                <p>
-                    Fantasy animation inspired by dreams and legends.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Project Three</h3>
-                <p>
-                    Short films focused on emotional storytelling.
-                </p>
-            </div>
-
+            <button onclick="toggleSocialModal()" class="mt-10 text-[9px] uppercase tracking-[0.2em] text-gray-400 hover:text-white transition">Close</button>
         </div>
-
-    </section>
-
-    <section id="join" class="reveal">
-
-        <h2>Join Us</h2>
-
-        <p>
-            Writers, animators, artists, musicians, and dreamers are welcome.
-            Help us create something extraordinary.
-        </p>
-
-        <a href="#" class="btn">
-            Join Now
-        </a>
-
-    </section>
-
-    <section id="contact" class="reveal">
-
-        <h2>Contact</h2>
-
-        <p>Email: contact@mirakuanimation.com</p>
-
-        <p>Follow us on social media for updates.</p>
-
-    </section>
-
-    <footer>
-        © 2026 Miraku Animation. All Rights Reserved.
-    </footer>
+    </div>
 
     <script>
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = (e.clientX - 12) + 'px';
+            cursor.style.top = (e.clientY - 12) + 'px';
+        });
 
-        /* Scroll Reveal */
-
-        const reveals = document.querySelectorAll(".reveal");
-
-        function revealSections() {
-            reveals.forEach((element) => {
-                const top = element.getBoundingClientRect().top;
-
-                if (top < window.innerHeight - 100) {
-                    element.classList.add("active");
-                }
-            });
+        function openSocialModal() {
+            document.getElementById('socialModal').classList.remove('hidden');
         }
-
-        window.addEventListener("scroll", revealSections);
-        revealSections();
-
-        /* Stars */
-
-        for (let i = 0; i < 40; i++) {
-
-            const star = document.createElement('div');
-
-            star.style.position = 'fixed';
-            star.style.width = '2px';
-            star.style.height = '2px';
-            star.style.background = 'white';
-            star.style.borderRadius = '50%';
-
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = Math.random() * 100 + 'vh';
-
-            star.style.opacity = Math.random();
-
-            star.style.animation =
-                `twinkle ${2 + Math.random() * 4}s infinite`;
-
-            star.style.pointerEvents = 'none';
-
-            document.body.appendChild(star);
-        }
-
+        function toggleSocialModal() { document.getElementById('socialModal').classList.add('hidden'); }
+        function toggleRecruitModal() {}
+        function toggleContactModal() {}
     </script>
-
 </body>
-
-</html>
+</html>```
