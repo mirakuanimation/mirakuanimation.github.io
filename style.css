@@ -1,5 +1,214 @@
+/* =========================
+   MIRAKU ANIMATION CSS
+   ========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    background: black;
-    color: white;
-    font-family: Arial;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Animated Gradient Background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    -45deg,
+    #000000,
+    #111827,
+    #0f172a,
+    #1e293b
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+  text-align: center;
+}
+
+/* Logo Floating */
+.logo {
+  width: 180px;
+  margin: auto;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Glowing Title */
+.hero h1 {
+  font-size: 4rem;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff;
+  }
+  to {
+    text-shadow:
+      0 0 20px #fff,
+      0 0 40px #60a5fa;
+  }
+}
+
+/* Subtitle */
+.hero p {
+  opacity: 0.8;
+  font-size: 1.2rem;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 30px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  transition: 0.4s;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px white;
+}
+
+/* Sections */
+section {
+  padding: 100px 10%;
+}
+
+/* Cards */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 25px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  transition: 0.4s;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+}
+
+/* Scroll Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #60a5fa;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px;
+  opacity: 0.7;
+}
+
+/* Shooting Star */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(white, transparent);
+  transform: rotate(45deg);
+  animation: shoot 5s linear infinite;
+}
+
+@keyframes shoot {
+  from {
+    top: -100px;
+    left: -100px;
+  }
+  to {
+    top: 120%;
+    left: 120%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero {
+    padding: 30px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
 }
