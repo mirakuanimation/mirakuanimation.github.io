@@ -33,6 +33,15 @@ nav {
     animation: navAppear 1.2s ease forwards;
 }
 
+@keyframes twinkle {
+    0%,100% {
+        opacity: .2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
 @keyframes navAppear {
     from {
         opacity: 0;
