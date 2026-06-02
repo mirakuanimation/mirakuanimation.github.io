@@ -1,214 +1,119 @@
-/* =========================
-   MIRAKU ANIMATION CSS
-   ========================= */
-
-html {
-  scroll-behavior: smooth;
+/* Hero Entrance */
+main {
+    animation: fadeUp 1.5s ease forwards;
 }
 
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: #000;
-  color: white;
-  overflow-x: hidden;
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Animated Gradient Background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    -45deg,
-    #000000,
-    #111827,
-    #0f172a,
-    #1e293b
-  );
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-  z-index: -2;
+/* Floating Hero Title */
+.hero-text {
+    animation: floatTitle 5s ease-in-out infinite;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes floatTitle {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
-/* Hero Section */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px;
-  text-align: center;
-}
-
-/* Logo Floating */
-.logo {
-  width: 180px;
-  margin: auto;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/* Glowing Title */
-.hero h1 {
-  font-size: 4rem;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow:
-      0 0 10px #fff,
-      0 0 20px #fff;
-  }
-  to {
-    text-shadow:
-      0 0 20px #fff,
-      0 0 40px #60a5fa;
-  }
-}
-
-/* Subtitle */
-.hero p {
-  opacity: 0.8;
-  font-size: 1.2rem;
-}
-
-/* Button */
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 30px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: white;
-  border: 2px solid white;
-  transition: 0.4s;
-}
-
-.btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px white;
-}
-
-/* Sections */
-section {
-  padding: 100px 10%;
-}
-
-/* Cards */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 25px;
-}
-
-.card {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  padding: 25px;
-  border-radius: 20px;
-  transition: 0.4s;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 30px rgba(255,255,255,0.2);
-}
-
-/* Scroll Animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: 1s;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Navigation */
+/* Navbar Fade */
 nav {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  backdrop-filter: blur(12px);
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
+    animation: navAppear 1.2s ease forwards;
 }
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  list-style: none;
+@keyframes navAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
+/* Smooth Link Hover */
+.nav-link {
+    transition: all .3s ease;
 }
 
-nav a:hover {
-  color: #60a5fa;
+.nav-link:hover {
+    transform: translateY(-2px);
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 40px;
-  opacity: 0.7;
+/* Social Icons Premium Hover */
+#socialModal a:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
-/* Shooting Star */
-.star {
-  position: fixed;
-  width: 2px;
-  height: 100px;
-  background: linear-gradient(white, transparent);
-  transform: rotate(45deg);
-  animation: shoot 5s linear infinite;
+/* Modal Animation */
+.modal-bg-anim {
+    animation:
+        gradientMove 6s ease infinite,
+        modalPop .4s ease;
 }
 
-@keyframes shoot {
-  from {
-    top: -100px;
-    left: -100px;
-  }
-  to {
-    top: 120%;
-    left: 120%;
-  }
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
+/* Scroll Text Float */
+.scroll-indicator {
+    animation:
+        pulse 2s infinite,
+        floatScroll 3s ease-in-out infinite;
+}
 
-  .hero {
-    padding: 30px;
-  }
+@keyframes floatScroll {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
 
-  nav ul {
-    gap: 15px;
-  }
+/* Background Glow */
+body::before {
+    content: '';
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    filter: blur(120px);
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    animation: glowMove 10s ease-in-out infinite;
+}
+
+@keyframes glowMove {
+    0%,100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2);
+    }
 }
