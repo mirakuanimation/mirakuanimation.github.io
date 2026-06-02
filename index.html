@@ -1,9 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Miraku Animation</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+<div class="star"></div>
+
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#join">Join Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section id="home" class="hero">
+
+    <img src="logo.png" alt="Miraku Logo" class="logo">
+
     <h1>Miraku Animation</h1>
+
+    <p>
+        Creating Worlds • Inspiring Generations
+    </p>
+
+    <a href="#about" class="btn">
+        Explore
+    </a>
+
+</section>
+
+<section id="about" class="reveal">
+
+    <h2>About Us</h2>
+
+    <p>
+        Miraku Animation is an independent animation studio dedicated to creating
+        unforgettable stories, memorable characters, and breathtaking worlds.
+        We believe imagination has no limits.
+    </p>
+
+</section>
+
+<section id="projects" class="reveal">
+
+    <h2>Our Projects</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+            <h3>Project One</h3>
+            <p>
+                Original anime series currently in development.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Project Two</h3>
+            <p>
+                Fantasy animation inspired by dreams and legends.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Project Three</h3>
+            <p>
+                Short films focused on emotional storytelling.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="join" class="reveal">
+
+    <h2>Join Us</h2>
+
+    <p>
+        Writers, animators, artists, musicians, and dreamers are welcome.
+        Help us create something extraordinary.
+    </p>
+
+    <a href="#" class="btn">
+        Join Now
+    </a>
+
+</section>
+
+<section id="contact" class="reveal">
+
+    <h2>Contact</h2>
+
+    <p>Email: contact@mirakuanimation.com</p>
+
+    <p>Follow us on social media for updates.</p>
+
+</section>
+
+<footer>
+    © 2026 Miraku Animation. All Rights Reserved.
+</footer>
+
+<script>
+
+/* Scroll Reveal */
+
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+
+    reveals.forEach((element) => {
+
+        const top = element.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100){
+            element.classList.add("active");
+        }
+
+    });
+
+});
+
+</script>
+
 </body>
 </html>
