@@ -124,3 +124,16 @@ body {
     cursor: none;
     scroll-behavior: smooth;
 }
+
+body{
+    animation: test 1s infinite alternate;
+}
+
+@keyframes test{
+    from{
+        background:red;
+    }
+    to{
+        background:blue;
+    }
+}
