@@ -40,28 +40,8 @@
             justify-content: center;
         }
 
-        /* Aesthetic Animated Modal Background */
-        .modal-bg-anim {
-            background: linear-gradient(45deg, #1f1f1f, #000000, #1f1f1f);
-            background-size: 200% 200%;
-            animation: gradientMove 6s ease infinite;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .hero-text { color: #ffffff; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .subtitle { color: #9ca3af; }
-
-        .nav-link { position: relative; padding-bottom: 4px; }
-        .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background-color: white; transition: width 0.3s ease; }
-        .nav-link:hover::after { width: 100%; }
-
-        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        .scroll-indicator { animation: pulse 2s infinite; }
+    
+        
     </style>
 </head>
     <body class="text-gray-900 flex flex-col justify-between h-screen overflow-hidden">
