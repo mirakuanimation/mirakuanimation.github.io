@@ -1,184 +1,3 @@
-
-Claude finished the response
-Create a premium, modern, anime-inspired animation website called "Miraku Animation".
-TECH STACK:
-- HTML5
-- CSS3
-- JavaScript (Vanilla JS)
-- Fully responsive
-- Smooth animations
-- Clean file structure (index.html, style.css, script.js)
-DESIGN REQUIREMENTS:
-GENERAL:
-- Dark luxury aesthetic.
-- Background: smooth black-to-white gradient with subtle animated particles.
-- Modern glassmorphism effects.
-- Smooth transitions and hover animations.
-- Professional and premium appearance.
-- Use modern typography.
-LOGO SECTION:
-- Top-left corner.
-- Display:
-Miraku
-Animation
-- "Miraku" larger than "Animation".
-- Elegant anime-inspired logo styling.
-- White text with subtle glow effect.
-CUSTOM CURSOR:
-- Replace default cursor.
-- Cursor should be a glowing star.
-- Cursor follows mouse smoothly.
-- Star leaves a small particle trail.
-- Cursor enlarges slightly on hover over buttons.
-NAVIGATION:
-Vertical navigation menu on left side.
-Buttons:
-- About
-- News
-- Social
-- Contact
-- Enroll
-Requirements:
-- Animated hover effects.
-- Smooth underline animation.
-- Glassmorphism button design.
-- Active section indicator.
-HERO SECTION:
-- Large centered title:
-"MIRAKU ANIMATION"
-- Subtitle:
-"Creating Worlds Beyond Imagination"
-- Animated fade-in entrance.
-- Call-to-action button:
-"Explore Now"
-BACKGROUND EFFECTS:
-- Animated black and white gradient.
-- Floating stars.
-- Subtle parallax movement.
-- Smooth ambient glow effects.
-- Premium cinematic feeling.
-ABOUT SECTION:
-- Smooth scrolling.
-- Animated reveal on scroll.
-- Describe Miraku Animation as a creative animation studio.
-NEWS SECTION:
-- Display latest announcements cards.
-- Hover animations.
-- Glass effect cards.
-SOCIAL SECTION:
-Include animated social icons:
-- Discord
-- Instagram
-- YouTube
-- X (Twitter)
-Icons glow when hovered.
-CONTACT SECTION:
-Modern contact form:
-- Name
-- Email
-- Message
-- Send Button
-Animated inputs.
-ENROLL SECTION:
-Premium enrollment card.
-Button:
-"Join Miraku"
-Advanced hover effects.
-ANIMATIONS:
-- GSAP-style smooth animations using pure JavaScript.
-- Fade-ins.
-- Slide animations.
-- Mouse movement effects.
-- Smooth scrolling.
-- Loading screen animation.
-LOADING SCREEN:
-- Miraku logo appears.
-- Animated star effect.
-- Smooth transition into homepage.
-EXTRA:
-- Use CSS variables.
-- Organize code professionally.
-- Add comments.
-- Create production-quality code.
-- Make it feel like a high-end anime studio website.
-- Performance optimized.
-- No external frameworks.
-Generate complete HTML, CSS, and JavaScript code.
-
-Show more
-19:47
-
-Reading frontend design skill
-Reading frontend design skill
-
-Reading frontend design skill
-Done
-Now I'll build all three files — index.html, style.css, and script.js — as a premium, production-quality anime studio website.
-
-
-Created 3 files
-Created 3 files
-Now let me verify all three files are complete and well-formed:
-
-
-Check file sizes and structure
-Check file sizes and structure
-All three files are solid. Let me present them:
-
-
-Presented 3 files
-Presented 3 files
-Here's a full breakdown of what's inside all three files:
-
-index.html — Semantic structure with 7 sections
-
-Loading screen with star-burst ring + animated progress bar
-Canvas element for the particle/star background
-Fixed logo (top-left) + vertical nav (left side)
-Hero → About → News → Social → Contact → Enroll → Footer
-style.css — 1,150+ lines of premium CSS
-
-Full CSS variable system (colors, typography, spacing, glass effects)
-Fonts: Cormorant Garamond (display/headings) + Outfit (body) — no generic fonts
-Glassmorphism cards with blur, border, and hover transforms
-Vertical nav with animated underlines, active indicators, and glassy buttons
-Platform-specific colored glows on each social card (Discord purple, Instagram pink, YouTube red, Twitter blue)
-Floating orb animations, shimmer overlays, stat cards, enroll card with decorative oversized watermark text
-Fully responsive: collapses to a bottom tab-bar nav on mobile
-script.js — 12 self-contained modules
-
-Loading screen — star ray builder + timed fade-out sequence
-Canvas stars — 200 twinkling, slowly drifting stars with mouse parallax
-Custom cursor — glowing star with smooth lag-follow + particle trail on movement + enlarges on hover
-Nav smooth scroll — IntersectionObserver-powered active section detection
-Scroll reveal — staggered fade/slide-in for every section element
-Hero reveal — sequenced animation cascade on load complete
-Mouse parallax — hero orbs and title shift with cursor position
-Contact form — async-style submit with success message
-Enroll button — star-burst particle explosion on click
-Card shimmer — mouse-tracking radial highlight on news/stat cards
-Scroll progress bar — glowing accent line at top of page
-Explore button — smooth scroll to About
-
-Index
-Code · HTML 
-
-Style
-Code · CSS 
-
-Script
-JS 
-
-Want to be notified when Claude responds?
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-
-
-raw
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,7 +11,7 @@ Index · HTML
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
- 
+
   <!-- ══════════════════════════════════════════
        LOADING SCREEN
   ══════════════════════════════════════════ -->
@@ -212,7 +31,7 @@ Index · HTML
       </div>
     </div>
   </div>
- 
+
   <!-- ══════════════════════════════════════════
        CUSTOM CURSOR
   ══════════════════════════════════════════ -->
@@ -222,12 +41,12 @@ Index · HTML
     </svg>
   </div>
   <div id="cursor-trail-container"></div>
- 
+
   <!-- ══════════════════════════════════════════
        CANVAS — Particle / Stars background
   ══════════════════════════════════════════ -->
   <canvas id="bg-canvas"></canvas>
- 
+
   <!-- ══════════════════════════════════════════
        LOGO (top-left)
   ══════════════════════════════════════════ -->
@@ -235,7 +54,7 @@ Index · HTML
     <span class="logo-miraku">Miraku</span>
     <span class="logo-animation">Animation</span>
   </div>
- 
+
   <!-- ══════════════════════════════════════════
        VERTICAL NAV
   ══════════════════════════════════════════ -->
@@ -249,12 +68,12 @@ Index · HTML
     </ul>
     <div class="nav-indicator"></div>
   </nav>
- 
+
   <!-- ══════════════════════════════════════════
        MAIN CONTENT
   ══════════════════════════════════════════ -->
   <main id="main-content">
- 
+
     <!-- HERO -->
     <section id="hero" class="section hero-section">
       <div class="hero-content">
@@ -274,7 +93,7 @@ Index · HTML
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
     </section>
- 
+
     <!-- ABOUT -->
     <section id="about" class="section about-section">
       <div class="section-container">
@@ -307,7 +126,7 @@ Index · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- NEWS -->
     <section id="news" class="section news-section">
       <div class="section-container">
@@ -338,7 +157,7 @@ Index · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- SOCIAL -->
     <section id="social" class="section social-section">
       <div class="section-container">
@@ -346,7 +165,7 @@ Index · HTML
         <h2 class="section-heading reveal-up">Join Our<br/><em>Community</em></h2>
         <p class="social-sub reveal-up">Follow our journey across the digital cosmos</p>
         <div class="social-grid reveal-up">
- 
+
           <a href="#" class="social-card glass-card" data-platform="discord">
             <div class="social-icon-wrap">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -355,7 +174,7 @@ Index · HTML
             <div class="social-handle">Join our server</div>
             <div class="social-glow"></div>
           </a>
- 
+
           <a href="#" class="social-card glass-card" data-platform="instagram">
             <div class="social-icon-wrap">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -364,7 +183,7 @@ Index · HTML
             <div class="social-handle">@miraku.animation</div>
             <div class="social-glow"></div>
           </a>
- 
+
           <a href="#" class="social-card glass-card" data-platform="youtube">
             <div class="social-icon-wrap">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -373,7 +192,7 @@ Index · HTML
             <div class="social-handle">Miraku Animation</div>
             <div class="social-glow"></div>
           </a>
- 
+
           <a href="#" class="social-card glass-card" data-platform="twitter">
             <div class="social-icon-wrap">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
@@ -382,11 +201,11 @@ Index · HTML
             <div class="social-handle">@MirakuAnim</div>
             <div class="social-glow"></div>
           </a>
- 
+
         </div>
       </div>
     </section>
- 
+
     <!-- CONTACT -->
     <section id="contact" class="section contact-section">
       <div class="section-container">
@@ -432,7 +251,7 @@ Index · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- ENROLL -->
     <section id="enroll" class="section enroll-section">
       <div class="section-container">
@@ -457,7 +276,7 @@ Index · HTML
         </div>
       </div>
     </section>
- 
+
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-inner">
@@ -469,10 +288,9 @@ Index · HTML
         <p class="footer-tagline">Creating Worlds Beyond Imagination</p>
       </div>
     </footer>
- 
+
   </main>
- 
+
   <script src="script.js"></script>
 </body>
 </html>
- 
