@@ -24,7 +24,7 @@
 
         #cursor {
             position: fixed; top: 0; left: 0; 
-            width: 20px; height: 20px;
+            width: 50px; height: 50px;
             pointer-events: none; z-index: 9999;
             transition: transform 0.1s ease;
         }
@@ -76,20 +76,20 @@
 
     <aside class="sidebar">
         <div class="brand">
-            <h1>MIRAKU</h1>
+           <bold> <h1>MIRAKU</h1></bold>
             <p>ANIMATION</p>
         </div>
         <nav class="nav-menu">
-            <a href="#" class="nav-link"><span class="symbol">┃</span> About</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> News</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> Social</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> Contact</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> Enroll</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴀʙᴏᴜᴛ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ɴᴇᴡꜱ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴄᴏɴᴛᴀᴄᴛ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴇɴʀᴏʟʟ</a>
         </nav>
     </aside>
 
     <main>
-        <h1>MIRAKU STUDIO</h1>
+        <h1>MIRAKU ANIMATION</h1>
     </main>
 
     <script>
@@ -104,7 +104,7 @@
             const symbol = link.querySelector('.symbol');
             
             link.addEventListener('mouseenter', () => {
-                symbol.textContent = '・';
+                symbol.textContent = '×';
             });
 
             link.addEventListener('mouseleave', () => {
