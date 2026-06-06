@@ -4,98 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miraku Animation | Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        body { background: var(--bg-color); color: var(--accent); font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; cursor: none; }
+        
         /* Custom Star Cursor */
         #cursor {
             position: fixed; top: 0; left: 0; width: 20px; height: 20px;
             pointer-events: none; z-index: 9999;
             filter: drop-shadow(0 0 8px white);
         }
-
-        /* Loading Screen */
-        #loader {
-            position: fixed; inset: 0; background: var(--bg-color);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10000; transition: opacity 0.8s;
-        }
-
-        /* Layout */
-        .nav-panel { position: fixed; left: 40px; top: 50%; transform: translateY(-50%); z-index: 100; }
-        .nav-btn { display: block; margin: 20px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #666; transition: var(--transition); background: none; border: none; }
-        .nav-btn:hover { color: white; transform: translateX(10px); }
-
-        main { margin-left: 150px; padding: 100px; }
-        section { min-height: 80vh; opacity: 0; transform: translateY(30px); transition: 1s; }
-        section.active { opacity: 1; transform: translateY(0); }
-
-        .hero h1 { font-size: 6rem; line-height: 1; font-weight: 900; }
-        .btn-main { padding: 20px 40px; background: var(--glass); border: 1px solid white; color: white; margin-top: 30px; transition: var(--transition); }
-        .btn-main:hover { background: white; color: black; }
-
-        /* Glass Cards */
-        .card { padding: 40px; background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
     </style>
 </head>
-<body>
+<body class="bg-[#050505] text-white flex overflow-hidden h-screen">
 
-    <div id="loader"><h1>MIRAKU</h1></div>
-    <div id="cursor">✦</div>
+    <div id="cursor" class="text-white text-xl">✦</div>
 
-    <nav class="nav-panel">
-        <button class="nav-btn" onclick="scrollToSec('about')">About</button>
-        <button class="nav-btn" onclick="scrollToSec('news')">News</button>
-        <button class="nav-btn" onclick="scrollToSec('contact')">Contact</button>
+    <nav class="w-48 border-r border-zinc-800 p-8 flex flex-col justify-between">
+        <!-- Branding -->
+        <div>
+            <div class="mb-16">
+                <h1 class="text-3xl font-black tracking-tighter">MIRAKU</h1>
+                <p class="text-xs uppercase tracking-[0.2em] text-zinc-500 mt-1">Animation</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="space-y-6">
+                <li><a href="#" class="text-zinc-400 hover:text-white hover:translate-x-3 transition-all duration-300 uppercase text-sm tracking-widest block">About</a></li>
+                <li><a href="#" class="text-zinc-400 hover:text-white hover:translate-x-3 transition-all duration-300 uppercase text-sm tracking-widest block">News</a></li>
+                <li><a href="#" class="text-zinc-400 hover:text-white hover:translate-x-3 transition-all duration-300 uppercase text-sm tracking-widest block">Social Media</a></li>
+                <li><a href="#" class="text-zinc-400 hover:text-white hover:translate-x-3 transition-all duration-300 uppercase text-sm tracking-widest block">Contact</a></li>
+                <li><a href="#" class="text-zinc-400 hover:text-white hover:translate-x-3 transition-all duration-300 uppercase text-sm tracking-widest block">Enroll</a></li>
+            </ul>
+        </div>
+        
+        <div class="text-[10px] text-zinc-600 uppercase tracking-widest">
+            © 2026 Miraku Studio
+        </div>
     </nav>
 
-    <main>
-        <section id="home" class="active">
-            <h2 style="font-size: 1rem; letter-spacing: 10px;">MIRAKU ANIMATION</h2>
-            <h1 style="margin: 20px 0;">CREATING WORLDS<br>BEYOND IMAGINATION</h1>
-            <button class="btn-main">Explore Now</button>
-        </section>
-
-        <section id="about" class="card">
-            <h2>About Us</h2>
-            <p style="margin-top:20px; max-width: 600px;">Miraku Animation is a premium studio dedicated to the art of cinematic storytelling. We bridge traditional artistry with modern technology.</p>
-        </section>
+    <main class="flex-1 p-20 overflow-y-auto">
+        <h2 class="text-6xl font-black leading-tight max-w-2xl">
+            CREATING WORLDS <span class="text-zinc-700">BEYOND IMAGINATION.</span>
+        </h2>
+        <p class="mt-8 text-zinc-400 max-w-md">
+            Premium studio dedicated to the art of cinematic storytelling and high-fidelity movement.
+        </p>
     </main>
 
     <script>
         const cursor = document.getElementById('cursor');
         
-        // Custom Cursor Logic
         document.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
         });
 
-        // Entrance Animation
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
-            }, 1000);
-        };
-
-        function scrollToSec(id) {
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Scroll Reveal
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('section').forEach(sec => {
-                const top = sec.getBoundingClientRect().top;
-                if(top < window.innerHeight * 0.8) sec.classList.add('active');
-            });
+        // Add hover effect for links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.style.transform += ' scale(2)');
+            link.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(2)', ''));
         });
     </script>
 </body>
