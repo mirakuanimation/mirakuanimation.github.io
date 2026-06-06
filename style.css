@@ -1,128 +1,43 @@
-/* Deep Space Background */
 body{
     margin:0;
-    min-height:100vh;
-    background:
-    radial-gradient(circle at center,
-    #0f274d 0%,
-    #071325 45%,
-    #02060d 100%);
-
-    overflow-x:hidden;
+    font-family:Arial;
+    background:#111;
     color:white;
 }
 
-/* Moon */
-.moon-bg{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-2;
+header{
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+    background:#1b1b1b;
 }
 
-.moon-bg::before{
-    content:"";
-    position:absolute;
-
-    width:650px;
-    height:650px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    background-image:url("moon.png");
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-
-    opacity:.95;
-
-    filter:
-    drop-shadow(0 0 40px rgba(255,255,255,.35))
-    drop-shadow(0 0 120px rgba(130,180,255,.2));
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
 }
 
-/* Stars Layer */
-.stars{
-    position:fixed;
-    inset:0;
-    z-index:-3;
+.hero{
+    text-align:center;
+    padding:100px 20px;
 }
 
-.stars::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#9fd0ff 1px, transparent 1px);
-
-    background-size:
-    50px 50px,
-    120px 120px;
-
-    opacity:.8;
-}
-.twinkle-star{
-    position:fixed;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:white;
-
-    box-shadow:
-    0 0 6px white,
-    0 0 12px white;
-
-    animation:twinkle 3s ease-in-out infinite;
+.projects{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    padding:40px;
 }
 
-@keyframes twinkle{
-    0%,100%{
-        opacity:.2;
-        transform:scale(1);
-    }
-
-    50%{
-        opacity:1;
-        transform:scale(1.8);
-    }
-}
-.shooting-star{
-    position:fixed;
-
-    width:180px;
-    height:2px;
-
-    background:
-    linear-gradient(90deg,
-    white,
-    transparent);
-
-    top:20%;
-    left:110%;
-
-    opacity:0;
-
-    animation:shooting 12s linear infinite;
+.card{
+    background:#222;
+    padding:20px;
+    border-radius:10px;
+    width:250px;
 }
 
-@keyframes shooting{
-
-    0%,80%{
-        opacity:0;
-    }
-
-    81%{
-        opacity:1;
-    }
-
-    100%{
-        opacity:0;
-        transform:
-        translate(-1400px,700px);
-    }
+footer{
+    text-align:center;
+    padding:30px;
 }
