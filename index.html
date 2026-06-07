@@ -24,11 +24,15 @@
         }
 
         #cursor {
-            position: fixed; top: 0; left: 0; 
-            width: 50px; height: 50px;
-            pointer-events: none; z-index: 9999;
-            transition: transform 0.1s ease;
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    }
 
         .sidebar { 
             width: 200px; padding: 40px 30px; 
@@ -94,12 +98,12 @@
     </main>
 
     <script>
-        
 const cursor = document.getElementById('cursor');
 const navLinks = document.querySelectorAll('.nav-link');
 
 document.addEventListener('mousemove', (e) => {
-    cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
+    cursor.style.transform =
+        `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
 });
 
 navLinks.forEach(link => {
