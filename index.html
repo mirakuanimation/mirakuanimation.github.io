@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miraku Animation</title>
+    <link rel="icon" href="image_820a0d.jpg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -93,24 +94,25 @@
     </main>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        const navLinks = document.querySelectorAll('.nav-link');
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
-        });
+const cursor = document.getElementById('cursor');
+const navLinks = document.querySelectorAll('.nav-link');
 
-        navLinks.forEach(link => {
-            const symbol = link.querySelector('.symbol');
-            
-            link.addEventListener('mouseenter', () => {
-                symbol.textContent = '×';
-            });
+document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
+});
 
-            link.addEventListener('mouseleave', () => {
-                symbol.textContent = '┃';
-            });
-        });
-    </script>
+navLinks.forEach(link => {
+    const symbol = link.querySelector('.symbol');
+
+    link.addEventListener('mouseenter', () => {
+        symbol.textContent = '×';
+    });
+
+    link.addEventListener('mouseleave', () => {
+        symbol.textContent = '┃';
+    });
+});
+</script>
 </body>
 </html>
