@@ -7,272 +7,112 @@
     <link rel="icon" type="image/png" href="https://mirakuanimation.github.io/mirakufavicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-color: #050505;
-            --text-color: #ffffff;
-        }
-
+        :root { --bg-color: #050505; --text-color: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-        
-        body { 
-            background: var(--bg-color); 
-            color: var(--text-color); 
-            font-family: 'Inter', sans-serif; 
-            height: 100vh; 
-            display: flex;
-            overflow: hidden;
-        }
+        body { background: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; height: 100vh; display: flex; overflow: hidden; }
 
-        /* Cursor */
-        #custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 17px;
-            height: 17px;
-            pointer-events: none;
-            z-index: 1000;
-            will-change: transform;
-            mix-blend-mode: difference;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        #custom-cursor { 
+            position: fixed; top: 0; left: 0; width: 17px; height: 17px; 
+            pointer-events: none; z-index: 1000; will-change: transform; 
+            mix-blend-mode: difference; display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.2s ease;
         }
+        .star-element { width: 100%; height: 100%; display: block; fill: #ffffff; }
+        #sparkle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+        @media (pointer: coarse) { #custom-cursor, #sparkle-canvas { display: none !important; } body { cursor: auto !important; } }
 
-        .star-element {
-            width: 100%;
-            height: 100%;
-            display: block;
-            fill: #ffffff;
-        }
-
-        /* Sparkle Canvas */
-        #sparkle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-        }
-
-        @media (pointer: coarse) {
-            #custom-cursor, #sparkle-canvas { display: none !important; }
-            body { cursor: auto !important; }
-        }
-
-        .sidebar { 
-            width: 200px; padding: 40px 30px; 
-            display: flex; flex-direction: column;
-            border-right: 1px solid rgba(255,255,255,0.05);
-            justify-content: flex-start;
-        }
-
-        .brand { margin-bottom: 0px; text-align: left; }
-        .brand h1 { 
-            font-size: 25px; letter-spacing: 2px; text-transform: uppercase;
-            font-weight: 800;
-        }
-        .brand p { font-size: 13px; opacity: 0.5; letter-spacing: 2px; margin-top: 4px; }
-
-        .nav-menu { 
-            display: flex; flex-direction: column; 
-            gap: 20px;
-            width: 100%;
-            margin-top: 150px;
-        }
-        
+        .sidebar { width: 200px; padding: 40px 30px; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.05); }
+        .nav-menu { display: flex; flex-direction: column; gap: 20px; margin-top: 100px; }
         .nav-link { 
-            color: rgba(255,255,255,0.6); 
-            text-decoration: none; font-size: 15px; 
-            letter-spacing: 1px; transition: all 0.3s ease;
-            display: flex; align-items: center; gap: 12px;
-            width: 100%;
+            color: rgba(255,255,255,0.6); text-decoration: none; font-size: 15px; 
+            letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; 
         }
-
-        .symbol { width: 12px; display: inline-block; text-align: center; }
-        .nav-link:hover { color: white; padding-left: 5px; }
-
+        .nav-link.active { color: white; text-shadow: 0 0 8px rgba(255,255,255,0.8); }
+        .symbol { width: 12px; text-align: center; }
         main { flex-grow: 1; display: flex; align-items: center; justify-content: center; }
         h1 { font-size: 1.2rem; opacity: 0.5; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <div id="custom-cursor">
-        <svg class="star-element" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-    </div>
-
+    <div id="custom-cursor"><svg class="star-element" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
     <canvas id="sparkle-canvas"></canvas>
 
     <aside class="sidebar">
-        <div class="brand">
-            <h1>MIRAKU</h1>
-            <p>ANIMATION</p>
-        </div>
-       <nav class="nav-menu">
-    <a href="index.html" class="nav-link active">
-        <span class="symbol">┃</span> ʜᴏᴍᴇ
-    </a>
-
-    <a href="about.html" class="nav-link">
-        <span class="symbol">┃</span> ᴀʙᴏᴜᴛ
-    </a>
-
-    <a href="news.html" class="nav-link">
-        <span class="symbol">┃</span> ɴᴇᴡꜱ
-    </a>
-
-    <a href="social.html" class="nav-link">
-        <span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ
-    </a>
-
-    <a href="contact.html" class="nav-link">
-        <span class="symbol">┃</span> ᴄᴏɴᴛᴀᴄᴛ
-    </a>
-
-    <a href="enroll.html" class="nav-link">
-        <span class="symbol">┃</span> ᴇɴʀᴏʟʟ
-    </a>
-</nav>
+        <div class="brand"><h1>MIRAKU</h1><p>ANIMATION</p></div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-link active"><span class="symbol">┃</span> ʜᴏᴍᴇ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴀʙᴏᴜᴛ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ɴᴇᴡꜱ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴄᴏɴᴛᴀᴄᴛ</a>
+            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴇɴʀᴏʟʟ</a>
+        </nav>
     </aside>
 
-    <main>
-        <h1>MIRAKU ANIMATION</h1>
-    </main>
+    <main><h1>MIRAKU ANIMATION</h1></main>
 
     <script>
-
-        .nav-link {
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    font-size: 15px;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-}
-
-.nav-link:hover {
-    color: white;
-    padding-left: 5px;
-}
-
-/* Active Page */
-.nav-link.active {
-    color: #ffffff;
-    padding-left: 5px;
-    text-shadow:
-        0 0 5px rgba(255,255,255,0.8),
-        0 0 10px rgba(255,255,255,0.6),
-        0 0 20px rgba(255,255,255,0.4);
-}
-
-.nav-link.active .symbol {
-    color: white;
-}
-        
         const canvas = document.getElementById('sparkle-canvas');
         const ctx = canvas.getContext('2d');
         const cursor = document.getElementById('custom-cursor');
+        
         let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        let lastSpawnTime = 0;
+        let lastSpawn = 0;
 
         window.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
             
-            const now = Date.now();
-            if (now - lastSpawnTime > 80) {
-                const offsetX = (Math.random() - 0.5) * 15;
-                const offsetY = 8 + (Math.random() * 10); 
+            if (Date.now() - lastSpawn > 50) {
+                // Particles spawn randomly within horizontal range, but only below the cursor
+                const offsetX = (Math.random() - 0.5) * 30;
+                const offsetY = Math.random() * 30; // Only positive values to spawn below
                 particles.push(new Sparkle(e.clientX + offsetX, e.clientY + offsetY));
-                lastSpawnTime = now;
+                lastSpawn = Date.now();
             }
         });
 
         class Sparkle {
             constructor(x, y) {
-                this.x = x; this.y = y;
-                this.vx = (Math.random() - 0.5) * 1.5;
-                this.vy = (Math.random() * 1.5);
-                this.size = 1 + Math.random() * 3;
-                this.initialSize = this.size;
-                this.opacity = 1;
-                this.decay = 0.015 + Math.random() * 0.01;
-                this.color = Math.random() > 0.5 ? 'white' : 'black';
-                this.rotation = Math.random() * Math.PI;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+                this.x = x; this.y = y; 
+                this.vx = (Math.random() - 0.5) * 2; 
+                this.vy = Math.random() * 2; // Bias motion downwards
+                this.size = 1 + Math.random() * 3; 
+                this.initialSize = this.size; 
+                this.opacity = 1; 
+                this.decay = 0.03;
             }
-
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                this.opacity -= this.decay;
-                this.rotation += this.rotationSpeed;
-                this.size = Math.max(0, this.initialSize * this.opacity);
-            }
-
+            update() { this.x += this.vx; this.y += this.vy; this.opacity -= this.decay; this.size = this.initialSize * this.opacity; }
             draw() {
-                if (this.opacity <= 0) return;
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation);
-                ctx.beginPath();
-                ctx.moveTo(0, -this.size);
-                for (let i = 0; i < 4; i++) {
-                    ctx.lineTo(Math.cos(Math.PI/2*3 + i*Math.PI/2) * this.size, Math.sin(Math.PI/2*3 + i*Math.PI/2) * this.size);
-                    ctx.lineTo(Math.cos(Math.PI/2*3 + i*Math.PI/2 + Math.PI/4) * this.size * 0.25, Math.sin(Math.PI/2*3 + i*Math.PI/2 + Math.PI/4) * this.size * 0.25);
-                }
-                ctx.closePath();
-                ctx.fillStyle = this.color === 'white' ? '#ffffff' : '#000000';
-                ctx.fill();
-                ctx.restore();
+                ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
             }
         }
 
-        function loop() {
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles = particles.filter(p => p.opacity > 0);
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(loop);
+            requestAnimationFrame(animate);
         }
-        loop();
 
-        const hide = () => { cursor.style.opacity = '0'; };
-        const show = () => { cursor.style.opacity = '1'; };
-        document.querySelectorAll('button, a, input, select, textarea, label').forEach(el => {
-            el.addEventListener('mouseenter', hide);
-            el.addEventListener('mouseleave', show);
-        });
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
 
         document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
             const symbol = link.querySelector('.symbol');
-            link.addEventListener('mouseenter', () => { symbol.textContent = '×'; });
-            link.addEventListener('mouseleave', () => { symbol.textContent = '┃'; });
+            link.addEventListener('mouseenter', () => { symbol.textContent = '×'; cursor.style.opacity = '0'; });
+            link.addEventListener('mouseleave', () => { symbol.textContent = '┃'; cursor.style.opacity = '1'; });
         });
-
-        const currentPage = location.pathname.split("/").pop();
-
-document.querySelectorAll(".nav-link").forEach(link => {
-    const href = link.getAttribute("href");
-
-    if (
-        href === currentPage ||
-        (currentPage === "" && href === "index.html")
-    ) {
-        link.classList.add("active");
-    }
-});
     </script>
 </body>
 </html>
