@@ -111,13 +111,31 @@
             <h1>MIRAKU</h1>
             <p>ANIMATION</p>
         </div>
-        <nav class="nav-menu">
-            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴀʙᴏᴜᴛ</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> ɴᴇᴡꜱ</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴄᴏɴᴛᴀᴄᴛ</a>
-            <a href="#" class="nav-link"><span class="symbol">┃</span> ᴇɴʀᴏʟʟ</a>
-        </nav>
+       <nav class="nav-menu">
+    <a href="index.html" class="nav-link active">
+        <span class="symbol">┃</span> ʜᴏᴍᴇ
+    </a>
+
+    <a href="about.html" class="nav-link">
+        <span class="symbol">┃</span> ᴀʙᴏᴜᴛ
+    </a>
+
+    <a href="news.html" class="nav-link">
+        <span class="symbol">┃</span> ɴᴇᴡꜱ
+    </a>
+
+    <a href="social.html" class="nav-link">
+        <span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ
+    </a>
+
+    <a href="contact.html" class="nav-link">
+        <span class="symbol">┃</span> ᴄᴏɴᴛᴀᴄᴛ
+    </a>
+
+    <a href="enroll.html" class="nav-link">
+        <span class="symbol">┃</span> ᴇɴʀᴏʟʟ
+    </a>
+</nav>
     </aside>
 
     <main>
@@ -125,6 +143,38 @@
     </main>
 
     <script>
+
+        .nav-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+/* Active Page */
+.nav-link.active {
+    color: #ffffff;
+    padding-left: 5px;
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.8),
+        0 0 10px rgba(255,255,255,0.6),
+        0 0 20px rgba(255,255,255,0.4);
+}
+
+.nav-link.active .symbol {
+    color: white;
+}
+        
         const canvas = document.getElementById('sparkle-canvas');
         const ctx = canvas.getContext('2d');
         const cursor = document.getElementById('custom-cursor');
@@ -210,6 +260,19 @@
             link.addEventListener('mouseenter', () => { symbol.textContent = '×'; });
             link.addEventListener('mouseleave', () => { symbol.textContent = '┃'; });
         });
+
+        const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href");
+
+    if (
+        href === currentPage ||
+        (currentPage === "" && href === "index.html")
+    ) {
+        link.classList.add("active");
+    }
+});
     </script>
 </body>
 </html>
