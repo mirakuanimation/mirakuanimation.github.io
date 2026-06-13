@@ -16,6 +16,22 @@
             scroll-snap-type: y mandatory;
         }
 
+        /* Cozy Premium Scrollbar: Slim, soft white, rounded */
+        body::-webkit-scrollbar {
+            width: 5px;
+        }
+        body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        body::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
         #custom-cursor { 
             position: fixed; top: 0; left: 0; width: 17px; height: 17px; 
             pointer-events: none; z-index: 1000; will-change: transform; 
@@ -28,17 +44,6 @@
 
         .sidebar { width: 200px; padding: 40px 30px; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.05); position: fixed; height: 100vh; z-index: 100; justify-content: space-between; }
         
-        /* Updated Scrollbar - Positioned at far left corner */
-        .scroll-rail { 
-            position: absolute; left: 0; top: 0; bottom: 0; width: 6px; 
-            background: rgba(255, 255, 255, 0.03); 
-        }
-        .scroll-thumb { 
-            width: 100%; height: 120px; 
-            background: #50a8a8; /* Updated to match screenshot teal/cyan */
-            transition: transform 0.1s linear; border-radius: 0;
-        }
-
         .nav-menu { display: flex; flex-direction: column; gap: 20px; margin-top: 100px; margin-left: 10px; }
         .nav-link { 
             position: relative; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 15px; 
@@ -48,14 +53,12 @@
         .nav-link.active { color: white; text-shadow: 0 0 8px rgba(255,255,255,0.8); }
         .symbol { width: 12px; text-align: center; }
         
-        /* Box hover effect - ONLY for Enroll */
         .enroll-link::before { 
             content: ''; position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.2); 
             opacity: 0; transition: opacity 0.3s ease; transform: scale(0.95);
         }
         .enroll-link:hover::before { opacity: 1; transform: scale(1); }
 
-        /* Glow effect */
         .enroll-link { animation: glow 2s infinite alternate; }
         @keyframes glow { from { text-shadow: 0 0 5px rgba(255,255,255,0.2); } to { text-shadow: 0 0 15px rgba(255,255,255,0.8); } }
 
@@ -69,11 +72,6 @@
     <canvas id="sparkle-canvas"></canvas>
 
     <aside class="sidebar">
-        <!-- Scroll Rail moved here to be at the absolute left of the sidebar -->
-        <div class="scroll-rail">
-            <div class="scroll-thumb"></div>
-        </div>
-
         <div class="top-section ml-4">
             <div class="brand"><h1>MIRAKU</h1><p>ANIMATION</p></div>
             
@@ -101,16 +99,7 @@
         const canvas = document.getElementById('sparkle-canvas');
         const ctx = canvas.getContext('2d');
         const cursor = document.getElementById('custom-cursor');
-        const scrollThumb = document.querySelector('.scroll-thumb');
-        const scrollRail = document.querySelector('.scroll-rail');
         
-        window.addEventListener("scroll", () => {
-            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = window.scrollY / totalScroll;
-            const railHeight = scrollRail.offsetHeight - scrollThumb.offsetHeight;
-            scrollThumb.style.transform = `translateY(${scrollPercent * railHeight}px)`;
-        });
-
         window.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
         });
