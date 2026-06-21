@@ -294,17 +294,74 @@
       border: 1px solid rgba(255,255,255,0.1); white-space: nowrap;
     }
     /* Right — Social */
-    .footer-right .follow-label { font-size: 0.85rem; letter-spacing: 3px; color: rgba(255,255,255,0.5); margin-bottom: 10px; text-transform: uppercase; }
-    .social-links { display: flex; gap: 16px; flex-wrap: wrap; }
-    .social-link {
-      color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center;
-      width: 46px; height: 46px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease; background: rgba(255,255,255,0.02);
-      min-width: 44px; min-height: 44px; /* Touch target */
-    }
-    .social-link:hover { color: var(--accent-pu); border-color: var(--accent-purple); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-5px); }
-    .social-link svg { width: 22px; height: 22px; fill: currentColor; }
+   .footer-right .follow-label {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* YouTube */
+.social-link.youtube {
+  color: #ff0000;
+  border: 1px solid rgba(255,0,0,0.3);
+  background: rgba(255,0,0,0.05);
+}
+
+.social-link.youtube:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255,0,0,0.7);
+}
+
+/* Instagram */
+.social-link.instagram {
+  color: #c13584;
+  border: 1px solid rgba(193,53,132,0.3);
+  background: rgba(193,53,132,0.05);
+}
+
+.social-link.instagram:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(193,53,132,0.7);
+}
+
+/* Facebook */
+.social-link.facebook {
+  color: #1877f2;
+  border: 1px solid rgba(24,119,242,0.3);
+  background: rgba(24,119,242,0.05);
+}
+
+.social-link.facebook:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(24,119,242,0.7);
+}
+
+.social-link svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
     /* ================================================================
        RESPONSIVE — TABLET  (≤ 1024px)
     ================================================================ */
