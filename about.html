@@ -8,7 +8,6 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Orbitron:wght@500;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
  <!-- GASPS -->
   <link href="https://fonts.cdnfonts.com/css/aquire" rel="stylesheet">
@@ -38,6 +37,7 @@
        RESET & BASE
     ================================================================ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+    a, button, .email-copy, .scroll-indicator-wrapper { cursor: pointer !important; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg-color);
@@ -56,14 +56,14 @@
     ================================================================ */
     #cursor-main {
       position: fixed; top: 0; left: 0; width: 14px; height: 14px;
-      pointer-events: none; z-index: 10000;
+      pointer-events: none; z-index: 10005;
       fill: white; filter: drop-shadow(0 0 2px white);
       transform: translate(-50%, -50%);
       transition: opacity 0.3s;
     }
     #sparkle-canvas {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 9998;
+      pointer-events: none; z-index: 10004;
     }
     /* Hide custom cursor on touch devices */
     @media (pointer: coarse) {
@@ -301,13 +301,11 @@
   margin-bottom: 10px;
   text-transform: uppercase;
 }
-
 .social-links {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
 }
-
 .social-link {
   text-decoration: none;
   display: flex;
@@ -320,48 +318,80 @@
   min-width: 44px;
   min-height: 44px;
 }
-
 /* YouTube */
 .social-link.youtube {
   color: #ff0000;
   border: 1px solid rgba(255,0,0,0.3);
   background: rgba(255,0,0,0.05);
 }
-
 .social-link.youtube:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 20px rgba(255,0,0,0.7);
 }
-
 /* Instagram */
 .social-link.instagram {
   color: #c13584;
   border: 1px solid rgba(193,53,132,0.3);
   background: rgba(193,53,132,0.05);
 }
-
 .social-link.instagram:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 20px rgba(193,53,132,0.7);
 }
-
 /* Facebook */
 .social-link.facebook {
   color: #1877f2;
   border: 1px solid rgba(24,119,242,0.3);
   background: rgba(24,119,242,0.05);
 }
-
 .social-link.facebook:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 20px rgba(24,119,242,0.7);
 }
-
 .social-link svg {
   width: 22px;
   height: 22px;
   fill: currentColor;
 }
+    /* ================================================================
+       SOCIAL MODAL
+    ================================================================ */
+    .social-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+      z-index: 10001; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .social-modal.open { opacity: 1; pointer-events: all; }
+    .social-modal-content {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px; padding: 50px 70px; text-align: center;
+      position: relative; transform: translateY(20px); transition: transform 0.3s ease;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .social-modal.open .social-modal-content { transform: translateY(0); }
+    .social-modal .close-modal {
+      position: absolute; top: 15px; right: 20px;
+      background: none; border: none; color: #fff; font-size: 28px; cursor: pointer !important;
+      opacity: 0.5; transition: opacity 0.3s;
+    }
+    .social-modal .close-modal:hover { opacity: 1; }
+    .social-modal h2 {
+      font-size: 1.5rem; letter-spacing: 4px; color: #fff; margin-bottom: 30px; text-transform: uppercase;
+      text-shadow: 0 0 15px var(--accent-glow);
+    }
+    .social-modal .modal-icons { display: flex; gap: 30px; justify-content: center; }
+    .social-modal .modal-icon {
+      text-decoration: none; width: 70px; height: 70px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; transition: all 0.3s ease;
+    }
+    .social-modal .modal-icon svg { width: 34px; height: 34px; fill: currentColor; transition: transform 0.3s ease; }
+    .social-modal .modal-icon:hover svg { transform: scale(1.15); }
+    .social-modal .modal-icon.youtube { color: #ff0000; border: 2px solid rgba(255,0,0,0.3); background: rgba(255,0,0,0.05); }
+    .social-modal .modal-icon.youtube:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(255,0,0,0.6); border-color: rgba(255,0,0,0.8); }
+    .social-modal .modal-icon.instagram { color: #c13584; border: 2px solid rgba(193,53,132,0.3); background: rgba(193,53,132,0.05); }
+    .social-modal .modal-icon.instagram:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(193,53,132,0.6); border-color: rgba(193,53,132,0.8); }
     /* ================================================================
        RESPONSIVE — TABLET  (≤ 1024px)
     ================================================================ */
@@ -447,7 +477,7 @@
     <a href="intro.html" class="nav-link">ʜᴏᴍᴇ</a>
     <a href="about.html" class="nav-link active">ᴀʙᴏᴜᴛ</a>
     <a href="news.html" class="nav-link">ɴᴇᴡꜱ</a>
-    <a href="social.html" class="nav-link">ꜱᴏᴄɪᴀʟ</a>
+    <a href="#" onclick="openSocialModal(event)" class="nav-link">ꜱᴏᴄɪᴀʟ</a>
     <a href="contact.html" class="nav-link">ᴄᴏɴᴛᴀᴄᴛ</a>
     <a href="#" class="nav-link">ᴇɴʀᴏʟʟ</a>
   </nav>
@@ -459,7 +489,7 @@
         <a href="intro.html" class="nav-link"><span class="symbol">┃</span> ʜᴏᴍᴇ</a>
         <a href="about.html" class="nav-link active"><span class="symbol">┃</span> ᴀʙᴏᴜᴛ</a>
         <a href="news.html" class="nav-link"><span class="symbol">┃</span> ɴᴇᴡꜱ</a>
-        <a href="social.html" class="nav-link"><span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ</a>
+        <a href="#" onclick="openSocialModal(event)" class="nav-link"><span class="symbol">┃</span> ꜱᴏᴄɪᴀʟ</a>
         <a href="contact.html" class="nav-link"><span class="symbol">┃</span> ᴄᴏɴᴛᴀᴄᴛ</a>
       </nav>
     </div>
@@ -468,6 +498,21 @@
       <div class="enroll-box"></div>
     </div>
   </aside>
+  <!-- Social Modal -->
+  <div id="social-modal" class="social-modal">
+    <div class="social-modal-content">
+      <button class="close-modal" onclick="closeSocialModal()">×</button>
+      <h2>FOLLOW US ON</h2>
+      <div class="modal-icons">
+        <a href="https://www.youtube.com/@mirakuanimation" target="_blank" class="modal-icon youtube" title="YouTube" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418a2.506 2.506 0 0 0-1.768 1.768C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15V9l6 3-6 3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/mirakuanimation/?utm_source=ig_web_button_share_sheet" target="_blank" class="modal-icon instagram" title="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.342 3.608 1.317.975.975 1.255 2.242 1.317 3.608.058 1.266.07 1.646.07 4.842s-.012 3.584-.07 4.85c-.062 1.366-.342 2.633-1.317 3.608-.975.975-2.242 1.255-3.608 1.317-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.342-3.608-1.317C2.567 19.483 2.287 18.216 2.225 16.85 2.167 15.576 2.155 15.196 2.155 12s.012-3.584.07-4.85c.062-1.366.342-2.633 1.317-3.608.975-.975 2.242-1.255 3.608-1.317C8.416 2.175 8.796 2.163 12 2.163M12 0C8.741 0 8.333.014 7.053.072 5.395.148 4.124.505 3.036 1.593 1.948 2.681 1.591 3.951 1.515 5.609 1.457 6.889 1.443 7.297 1.443 10.556v2.888c0 3.259.014 3.667.072 4.947.076 1.658.433 2.928 1.521 4.016 1.088 1.088 2.358 1.445 4.016 1.521 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.658-.076 2.928-.433 4.016-1.521 1.088-1.088 1.445-2.358 1.521-4.016.058-1.28.072-1.688.072-4.947v-2.888c0-3.259-.014-3.667-.072-4.947C22.409.505 21.138.148 20.05.06 18.77.014 18.362 0 15.103 0H12zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
   <!-- ── MAIN CONTENT ─────────────────────────────────────── -->
   <div class="content-wrapper">
     <!-- ────── SECTION 1 : ABOUT ────── -->
@@ -519,30 +564,25 @@
       <!-- ✏️ RIGHT BLOCK — Social -->
       <div class="footer-block footer-right">
   <div class="follow-label">FOLLOW US ON:</div>
-
   <div class="social-links">
-
     <!-- YouTube -->
-    <a href="#" class="social-link youtube" title="YouTube" aria-label="YouTube">
+    <a href="https://www.youtube.com/@mirakuanimation" target="_blank" class="social-link youtube" title="YouTube" aria-label="YouTube">
       <svg viewBox="0 0 24 24">
         <path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418a2.506 2.506 0 0 0-1.768 1.768C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15V9l6 3-6 3z"/>
       </svg>
     </a>
-
     <!-- Instagram -->
-    <a href="#" class="social-link instagram" title="Instagram" aria-label="Instagram">
+    <a href="https://www.instagram.com/mirakuanimation/?utm_source=ig_web_button_share_sheet" target="_blank" class="social-link instagram" title="Instagram" aria-label="Instagram">
       <svg viewBox="0 0 24 24">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.342 3.608 1.317.975.975 1.255 2.242 1.317 3.608.058 1.266.07 1.646.07 4.842s-.012 3.584-.07 4.85c-.062 1.366-.342 2.633-1.317 3.608-.975.975-2.242 1.255-3.608 1.317-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.342-3.608-1.317C2.567 19.483 2.287 18.216 2.225 16.85 2.167 15.576 2.155 15.196 2.155 12s.012-3.584.07-4.85c.062-1.366.342-2.633 1.317-3.608.975-.975 2.242-1.255 3.608-1.317C8.416 2.175 8.796 2.163 12 2.163M12 0C8.741 0 8.333.014 7.053.072 5.395.148 4.124.505 3.036 1.593 1.948 2.681 1.591 3.951 1.515 5.609 1.457 6.889 1.443 7.297 1.443 10.556v2.888c0 3.259.014 3.667.072 4.947.076 1.658.433 2.928 1.521 4.016 1.088 1.088 2.358 1.445 4.016 1.521 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.658-.076 2.928-.433 4.016-1.521 1.088-1.088 1.445-2.358 1.521-4.016.058-1.28.072-1.688.072-4.947v-2.888c0-3.259-.014-3.667-.072-4.947C22.409.505 21.138.148 20.05.06 18.77.014 18.362 0 15.103 0H12zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
       </svg>
     </a>
-
     <!-- Facebook -->
     <a href="#" class="social-link facebook" title="Facebook" aria-label="Facebook">
       <svg viewBox="0 0 24 24">
         <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
       </svg>
     </a>
-
   </div>
 </div>
     </footer>
@@ -552,6 +592,21 @@
        JAVASCRIPT
   ═══════════════════════════════════════════════════════ -->
   <script>
+    // ── Modal Handlers ───────────────────────────────────────
+    function openSocialModal(e) {
+      e.preventDefault();
+      document.getElementById('social-modal').classList.add('open');
+      if(window.innerWidth <= 768) {
+        document.getElementById('mobile-nav-overlay').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('hamburger').setAttribute('aria-expanded', false);
+        document.getElementById('mobile-nav-overlay').setAttribute('aria-hidden', true);
+      }
+    }
+    function closeSocialModal() {
+      document.getElementById('social-modal').classList.remove('open');
+    }
+    
     // ── Utility ──────────────────────────────────────────────
     const isMobile = () => window.innerWidth <= 768;
     // ── Copy Email ───────────────────────────────────────────
@@ -642,6 +697,7 @@
     let mouse = { x: -200, y: -200 };
     let particles = [];
     let burstParticles = [];
+    let sakuraParticles = [];
     window.addEventListener('mousemove', (e) => {
       mouse = { x: e.clientX, y: e.clientY };
       if (mainCursor) {
@@ -678,6 +734,40 @@
         ctx.shadowBlur = 0;
         bp.x += bp.vx; bp.y += bp.vy; bp.life -= 0.02;
         if (bp.life <= 0) burstParticles.splice(j, 1);
+      });
+      // Sakura Petals Falling
+      if (Math.random() > 0.92) {
+        sakuraParticles.push({
+          x: Math.random() * canvas.width,
+          y: -20,
+          vx: (Math.random() - 0.5) * 1 + 0.5,
+          vy: Math.random() * 1.5 + 0.5,
+          size: Math.random() * 5 + 3,
+          angle: Math.random() * Math.PI * 2,
+          spin: (Math.random() - 0.5) * 0.1,
+          opacity: Math.random() * 0.5 + 0.4
+        });
+      }
+      
+      sakuraParticles.forEach((sp, k) => {
+        ctx.save();
+        ctx.translate(sp.x, sp.y);
+        ctx.rotate(sp.angle);
+        ctx.fillStyle = `rgba(255, 183, 197, ${sp.opacity})`;
+        ctx.beginPath();
+        ctx.moveTo(0, -sp.size);
+        ctx.bezierCurveTo(sp.size, -sp.size, sp.size, sp.size, 0, sp.size);
+        ctx.bezierCurveTo(-sp.size, sp.size, -sp.size, -sp.size, 0, -sp.size);
+        ctx.fill();
+        ctx.restore();
+        
+        sp.x += sp.vx + Math.sin(sp.y * 0.015) * 0.8;
+        sp.y += sp.vy;
+        sp.angle += sp.spin;
+        
+        if (sp.y > canvas.height + 20) {
+          sakuraParticles.splice(k, 1);
+        }
       });
       requestAnimationFrame(animate);
     }
